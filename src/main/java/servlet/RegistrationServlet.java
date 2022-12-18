@@ -1,6 +1,8 @@
 package servlet;
 
+import com.google.gson.Gson;
 import dao.impl.UserDaoImpl;
+import exceptions.UserAlreadyExistsException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import entity.User;
 import service.UserSevice;
 import service.impl.UserSeviceImpl;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet("/register")
@@ -23,14 +26,15 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String first_name = req.getParameter("first_name");
-        String last_name = req.getParameter("last_name");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
-
-        User user = new User(first_name,last_name,email,password);
+        Gson gson = new Gson();
+        BufferedReader reader = req.getReader();
+        User user = gson.fromJson(reader, User.class);
         System.out.println(user);
-        userSevice.save(user);
-        resp.sendRedirect("login.jsp");
+        try {
+            userSevice.save(user);
+            resp.sendRedirect("login.jsp");
+        } catch (UserAlreadyExistsException e) {
+            resp.setStatus(HttpServletResponse.SC_CONFLICT);
+        }
     }
 }

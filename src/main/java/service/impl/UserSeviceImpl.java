@@ -3,6 +3,7 @@ package service.impl;
 import dao.UserDao;
 import entity.User;
 import exceptions.IncorrectCredentialsException;
+import exceptions.UserAlreadyExistsException;
 import modules.UserCredentials;
 import service.UserSevice;
 
@@ -17,8 +18,12 @@ public class UserSeviceImpl implements UserSevice {
     }
 
     @Override
-    public void save(User user) {
+    public void save(User user) throws UserAlreadyExistsException {
         try {
+            Optional<User> byEmail = userDao.getByEmail(user.getEmail());
+            if (byEmail.isPresent()) {
+                throw new UserAlreadyExistsException();
+            }
             userDao.insert(user);
         } catch (SQLException e) {
             throw new RuntimeException(e);

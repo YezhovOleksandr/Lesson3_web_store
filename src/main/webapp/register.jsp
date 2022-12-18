@@ -10,7 +10,7 @@
 
 <div class="login-box">
     <h2>Login</h2>
-    <form action="register" method="post">
+    <form onsubmit="handleRegister(event)">
         <div class="user-box">
             <input type="text" id = "first_name" name = "first_name" placeholder="First name">
             <label>First name</label>
@@ -20,12 +20,19 @@
             <label>Email</label>
         </div>
         <div class="user-box">
-            <input type="email" id = "email" name = "email" placeholder="email">
+            <input type="email" id = "email" name = "email" placeholder="Email">
             <label>Email</label>
         </div>
         <div class="user-box">
-            <input type="password" id = "password" name="password" placeholder="password">
+            <input type="password" id = "password" name="password" placeholder="Password">
             <label>Password</label>
+        </div>
+        <div class="user-box">
+            <input type="password" id = "Confirmation" name="confirmation" placeholder="Confirm password">
+            <label>Password</label>
+        </div>
+        <div class="login-box-error-message" id="error_message">
+
         </div>
         <input type="submit">
         <div class="login-p-box">
@@ -33,5 +40,6 @@
         </div>
     </form>
 </div>
+<script src="./js/register.js"></script>
 </body>
 </html>
