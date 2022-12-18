@@ -3,26 +3,35 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="./CSS/from.css">
 </head>
 <body>
-<form action="register" method="post">
-    <div>
-        <label for ="first_name">First name</label>
-        <input type="text" id = "first_name" name = "first_name" placeholder="First name">
-    </div>
-    <div>
-        <label for ="last_name">Last name</label>
-        <input type="text" id = "last_name" name = "last_name" placeholder="Last name">
-    </div>
-    <div>
-        <label for ="email">Email</label>
-        <input type="email" id = "email" name = "email" placeholder="email">
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id = "password" name="password" placeholder="password">
-    </div>
-    <input type="submit">
+<jsp:include page="header.jsp"></jsp:include>
+
+<div class="login-box">
+    <h2>Login</h2>
+    <form action="register" method="post">
+        <div class="user-box">
+            <input type="text" id = "first_name" name = "first_name" placeholder="First name">
+            <label>First name</label>
+        </div>
+        <div class="user-box">
+            <input type="text" id = "last_name" name = "last_name" placeholder="Last name">
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="email" id = "email" name = "email" placeholder="email">
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="password" id = "password" name="password" placeholder="password">
+            <label>Password</label>
+        </div>
+        <input type="submit">
+        <div class="login-p-box">
+            <p>Already have an account?<a href="login.jsp">Log in</a> </p>
+        </div>
     </form>
+</div>
 </body>
 </html>
