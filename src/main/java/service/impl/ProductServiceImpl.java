@@ -10,20 +10,26 @@ import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
     private final ProductDao productDao;
-
+    private final String DEFAULT_IMAGE_URL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeHL3u0EubwNCoSV1e6yDdnzrVt33uCKnt0Q&usqp=CAU";
     public ProductServiceImpl(ProductDao productDao) {
         this.productDao = productDao;
     }
 
     @Override
     public void save(Product product) throws SQLException {
+        String image = product.getImage();
+
+        if (image == null) {
+            product.setImage(DEFAULT_IMAGE_URL);
+        }
+
         productDao.save(product);
+
     }
 
     @Override
     public List<Product> getAll() throws SQLException {
-        List<Product> all = productDao.getAll();
-        return all;
+        return productDao.getAll();
     }
 
     @Override
