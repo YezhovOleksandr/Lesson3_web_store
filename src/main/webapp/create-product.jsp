@@ -17,7 +17,7 @@
 </h1>
 
 <div style="width: 70%; margin: 0 auto">
-    <form>
+    <form onsubmit="saveProduct(event)">
         <div class="mb-3">
             <label for="name" class="form-label">Name of the product</label>
             <input type="text" name = "name" class="form-control" id="name" placeholder="Name of the product">
@@ -30,8 +30,15 @@
             <label for="price" class="form-label">Price</label>
             <input type="number" name = "price" class="form-control" id="price" placeholder="0">
         </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Preview Image</label>
+            <input type="file" name = "image" class="form-control" id="image">
+        </div>
+        <div class="alert alert-danger" role="alert" id = "alert" hidden = "hidden">
+        </div>
         <input type="submit" class="btn-primary">
     </form>
 </div>
+<script src="./js/product.js"></script>
 </body>
 </html>
