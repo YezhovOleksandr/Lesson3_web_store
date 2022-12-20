@@ -31,7 +31,7 @@ function handleRegister(event) {
                 window.location.href = response.url;
             break;
             case 409:
-                messageBlock.innerText = 'Email ' + userObject.email + ' is already exists ';
+                messageBlock.innerText = `Email ${userObject.email} is already exists`;
                 document.getElementById('email').style.outline = '1px solid red';
                 break;
             default:

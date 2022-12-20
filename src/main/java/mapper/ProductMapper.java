@@ -25,10 +25,11 @@ public class ProductMapper {
         List<Product> products = new ArrayList<>();
 
         while (resultSet.next()) {
-            Product product = new Product(0 , resultSet.getString(1),
+            Product product = new Product(resultSet.getInt(1),
                     resultSet.getString(2),
-                    resultSet.getDouble(3),
-                    resultSet.getString(4) );
+                    resultSet.getString(3),
+                    resultSet.getDouble(4),
+                    resultSet.getString(5));
             products.add(product);
         }
         return products;
