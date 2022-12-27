@@ -32,7 +32,6 @@ public class RegistrationServlet extends HttpServlet {
         System.out.println(user);
         try {
             userSevice.save(user);
-
             resp.sendRedirect("login.jsp");
         } catch (UserAlreadyExistsException e) {
             resp.setStatus(HttpServletResponse.SC_CONFLICT);

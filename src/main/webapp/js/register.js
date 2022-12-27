@@ -28,7 +28,7 @@ function handleRegister(event) {
         console.log(response)
         switch ((await response).status) {
             case 200:
-                window.location.href = response.url;
+                window.location.href = (await response).url;
             break;
             case 409:
                 messageBlock.innerText = `Email ${userObject.email} is already exists`;
