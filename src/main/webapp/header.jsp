@@ -27,7 +27,7 @@
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="index.jsp" class="nav-link px-2 text-white">Home</a></li>
           <li><a href="user" class="nav-link px-2 text-white">Contacts</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Bucket</a></li>
+        <li><a href="bucket.jsp" class="nav-link px-2 text-white">Bucket</a></li>
         <li><a href="create-product.jsp" class="nav-link px-2 text-white">Create product</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Contacts</a></li>
       </ul>
