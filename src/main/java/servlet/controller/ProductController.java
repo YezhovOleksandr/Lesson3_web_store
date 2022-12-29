@@ -42,10 +42,21 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
         Gson gson = new Gson();
         resp.setContentType("application/json");
         PrintWriter writer = resp.getWriter();
         List<Product> all = null;
+        if (id != null) {
+            Product product = productService.getById(Integer.parseInt(id));
+            if (product == null) {
+                resp.sendRedirect("404.jsp");
+                return;
+            }
+            req.setAttribute("product",product);
+            req.getRequestDispatcher("product-details.jsp").forward(req, resp);
+        }
+
         try {
             all = productService.getAll();
         } catch (SQLException e) {

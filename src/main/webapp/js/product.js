@@ -1,21 +1,25 @@
 const PRODUCT_ENDPOINT = "product"
-const CARDFORPRODUCTS = (product) => `    <div class="col">
-        <div class="card shadow-sm">
-            <img src="${product.image}" alt="product" width="250" height="250">
-            <div class="card-body">
-                <p class="card-text">${product.name}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">
-                            <i class="fa-sharp fa-solid fa-basket-shopping"></i>
-                        </button>
+const CARDFORPRODUCTS = (product) => {
+    return `  <div class="col">
+            <div class="card shadow-sm">
+                <img src="${product.image}" alt="product" width="250" height="250">
+                <div class="card-body">
+                    <p class="card-text">${product.name}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <a href="product?id=${product.id}">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>                    
+                        </a>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                <i class="fa-sharp fa-solid fa-basket-shopping"></i>
+                            </button>
+                        </div>
+                        <span class="text-muted">${product.price}</span>
                     </div>
-                    <span class="text-muted">${product.price}</span>
                 </div>
             </div>
-        </div>
-    </div>`
+        </div>  `;
+}
 
 function saveProduct(event) {
     event.preventDefault();
