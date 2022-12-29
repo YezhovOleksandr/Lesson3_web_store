@@ -4,6 +4,7 @@ import dao.UserDao;
 import entity.User;
 import exceptions.IncorrectCredentialsException;
 import exceptions.UserAlreadyExistsException;
+import exceptions.UserNotFoundException;
 import modules.UserCredentials;
 import service.UserSevice;
 
@@ -44,5 +45,14 @@ public class UserSeviceImpl implements UserSevice {
             e.printStackTrace();
         }
         throw new IncorrectCredentialsException();
+    }
+
+    @Override
+    public User getById(int id) throws UserNotFoundException, SQLException {
+        Optional<User> byId = userDao.getById(id);
+        if (byId.isPresent()) {
+            return byId.get();
+        }
+        throw new UserNotFoundException();
     }
 }

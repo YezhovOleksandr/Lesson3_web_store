@@ -8,4 +8,6 @@ public interface UserDao {
     Optional<User> getByEmail(String email) throws SQLException;
 
     void insert(User user) throws SQLException;
+
+    Optional<User> getById(int id) throws SQLException;
  }

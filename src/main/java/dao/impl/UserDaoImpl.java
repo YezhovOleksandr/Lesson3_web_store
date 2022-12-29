@@ -43,4 +43,15 @@ public class UserDaoImpl implements UserDao {
         statement.execute();
         statement.close();
     }
+
+    @Override
+    public Optional<User> getById(int id) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(
+                "select * from user where id = ?");
+        statement.setInt(1,id);
+        ResultSet resultSet = statement.executeQuery();
+        User user = UserMapper.mapToUser(resultSet);
+        statement.close();
+        return Optional.ofNullable(user);
+    }
 }
