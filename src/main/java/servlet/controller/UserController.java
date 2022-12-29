@@ -1,6 +1,7 @@
 package servlet.controller;
 
 import dao.impl.UserDaoImpl;
+import dto.UserDTO;
 import entity.User;
 import exceptions.UserNotFoundException;
 import jakarta.servlet.ServletException;
@@ -33,6 +34,8 @@ public class UserController extends HttpServlet {
         }
         try {
             User user = userSevice.getById((int) userId);
+            req.setAttribute("user", new UserDTO(user));
+            req.getRequestDispatcher("cabinet.jsp").forward(req, resp);
         } catch (UserNotFoundException e) {
             resp.sendRedirect("login.jsp");
             throw new RuntimeException(e);
