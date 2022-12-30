@@ -1,6 +1,8 @@
 package service.impl;
 
+import dao.BucketDao;
 import dao.UserDao;
+import dao.impl.BucketDaoImpl;
 import entity.User;
 import exceptions.IncorrectCredentialsException;
 import exceptions.UserAlreadyExistsException;
@@ -13,9 +15,11 @@ import java.util.Optional;
 
 public class UserSeviceImpl implements UserSevice {
     private final UserDao userDao;
+    private final BucketDao bucketDao;
 
-    public UserSeviceImpl(UserDao userDao) {
+    public UserSeviceImpl(UserDao userDao, BucketDao bucketDao) {
         this.userDao = userDao;
+        this.bucketDao = bucketDao;
     }
 
     @Override
@@ -25,7 +29,8 @@ public class UserSeviceImpl implements UserSevice {
             if (byEmail.isPresent()) {
                 throw new UserAlreadyExistsException();
             }
-            userDao.insert(user);
+            int saveId = userDao.insert(user);
+            bucketDao.createBucket(saveId);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void insert(User user) throws SQLException {
+    public int insert(User user) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(
                 "INSERT INTO user(first_name, last_name, email, password, role) VALUES (?,?,?,?,?)"
         );
@@ -42,6 +42,9 @@ public class UserDaoImpl implements UserDao {
         statement.setString(5,user.getRole().name());
         statement.execute();
         statement.close();
+        ResultSet resultSet = connection.createStatement().executeQuery("SELECT LAST_INSERT_ID()");
+        resultSet.next();
+        return resultSet.getInt(1);
     }
 
     @Override

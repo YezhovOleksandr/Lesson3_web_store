@@ -1,6 +1,7 @@
 package servlet;
 
 import com.google.gson.Gson;
+import dao.impl.BucketDaoImpl;
 import dao.impl.UserDaoImpl;
 import exceptions.UserAlreadyExistsException;
 import jakarta.servlet.ServletException;
@@ -21,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
     private final UserSevice userSevice;
 
     public RegistrationServlet() {
-        userSevice = new UserSeviceImpl(new UserDaoImpl());
+        userSevice = new UserSeviceImpl(new UserDaoImpl(), new BucketDaoImpl());
     }
 
     @Override

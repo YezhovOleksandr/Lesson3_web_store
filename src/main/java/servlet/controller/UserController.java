@@ -1,5 +1,6 @@
 package servlet.controller;
 
+import dao.impl.BucketDaoImpl;
 import dao.impl.UserDaoImpl;
 import dto.UserDTO;
 import entity.User;
@@ -22,7 +23,7 @@ public class UserController extends HttpServlet {
     private final UserSevice userSevice;
 
     public UserController() {
-        userSevice = new UserSeviceImpl(new UserDaoImpl());
+        userSevice = new UserSeviceImpl(new UserDaoImpl(), new BucketDaoImpl());
     }
 
     @Override
