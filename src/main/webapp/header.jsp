@@ -37,7 +37,7 @@
       </form>
       <%
         String name=(String) session.getAttribute("userName");
-        String role=(String) session.getAttribute("userRole ");
+        String role=(String) session.getAttribute("userRole");
       %>
 
       <div class="text-end">
@@ -60,7 +60,7 @@
 <script>
     const  role = '<%=role%>'
     console.log(role)
-    if (role != 'ADMIN') {
+    if (role !== 'ADMIN') {
         document.getElementById("create").setAttribute("hidden","hidden")
     }
     const item = localStorage.getItem('userId');
