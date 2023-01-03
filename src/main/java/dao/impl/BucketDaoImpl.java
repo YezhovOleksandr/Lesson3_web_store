@@ -28,7 +28,7 @@ public class BucketDaoImpl implements BucketDao {
     @Override
     public List<Product> getAllProducts(int bucketId) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(
-                "select * from bucket_product bd inner join product p on bd.product_id = p.id where bd.bucket_id = ?");
+                "select p.id, p.name, p.description ,p.price,p.image from bucket_product bd inner join product p on bd.product_id = p.id where bd.bucket_id = ?");
         statement.setInt(1,bucketId);
         ResultSet resultSet = statement.executeQuery();
         List<Product> products = ProductMapper.mapProductsFromResultSet(resultSet);

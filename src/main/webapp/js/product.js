@@ -83,7 +83,6 @@ function displayCards(products) {
 function addProductToBucket(productId) {
     if (!userId) {
         window.location.href = 'login.jsp';
-        return;
     }
     fetch(BUCKET_ENDPOINT, {
         method: 'POST',

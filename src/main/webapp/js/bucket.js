@@ -12,7 +12,7 @@ const BUCKET_CARD = (product) => `<div class="bucket-item">
   </div>
 
   <div class="buttons">
-    <button class="btn btn-danger">Remove</button>
+    <button onclick="removeItem(${product.id})" class="btn btn-danger">Remove</button>
   </div>
   </div>`
 function getProducts() {
@@ -35,6 +35,10 @@ function displayitems(items) {
     }
 }
 function removeItem(id) {
-
+    fetch(`${BUCKET_ENDPOINT}?productId=${id}`, {
+        method:"DELETE"
+    }).then(() => {
+        window.location.reload()
+    })
 }
 getProducts();
