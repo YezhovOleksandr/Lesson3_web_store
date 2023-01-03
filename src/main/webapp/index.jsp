@@ -11,6 +11,13 @@
 </div>
 </div>
 </div>
+<script>
+    const item = localStorage.getItem('userId');
+    const userIdFromSession = <%=session.getAttribute("userId")%>
+        if (userIdFromSession !== item ) {
+            localStorage.setItem('userId', userIdFromSession);
+        }
+</script>
 <script src="js/product.js"></script>
 </body>
 </html>
